@@ -1,30 +1,40 @@
 import { test, expect } from '@playwright/test';
+import { NavbarPage } from '../../pages/NavbarPage';
 
 test.describe('Navbar navigation', () => {
 
   test('should load the home page', async ({ page }) => {
-    await page.goto('/');
+    const navbar = new NavbarPage(page);
+    await navbar.goto();
     await expect(page).toHaveTitle(/R&D Labs AI/i);
   });
 
   test('should navigate to Products', async ({ page }) => {
-    await page.goto('/');
-    await page.locator('header').getByRole('link', { name: /products/i }).click();
+    const navbar = new NavbarPage(page);
+    await navbar.goto();
+    await navbar.clickProducts();
     await expect(page).toHaveURL(/products/i);
   });
 
   test('should navigate to Knowledge Base', async ({ page }) => {
-    await page.goto('/');
-    await page.locator('header').getByRole('link', { name: /knowledge/i }).click();
+    const navbar = new NavbarPage(page);
+    await navbar.goto();
+    await navbar.clickKnowledgeBase();
     await expect(page).toHaveURL(/kb/i);
   });
 
   test('should navigate to Company', async ({ page }) => {
-    await page.goto('/');
-    await page.evaluate(() => {
-        window.location.href = '/company';
-    });
+    const navbar = new NavbarPage(page);
+    await navbar.goto();
+    await navbar.clickCompany();
     await expect(page).toHaveURL(/company/i);
+  });
+
+  test('should navigate to Contact Us', async ({ page }) => {
+    const navbar = new NavbarPage(page);
+    await navbar.goto();
+    await navbar.clickContactUs();
+    await expect(page).toHaveURL(/contact/i);
   });
 
 });
