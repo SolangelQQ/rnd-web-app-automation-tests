@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { NavbarPage } from '../../pages/NavbarPage';
-import { ContactUsPage } from '../../pages/contactUsPage';
+import { ContactUsPage } from '../../pages/ContactUsPage';
 
 test.describe('Contact us page', () => {
 
